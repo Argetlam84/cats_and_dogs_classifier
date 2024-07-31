@@ -3,9 +3,7 @@
 
 This project showcases four different machine learning models designed to classify images into categories. These models use advanced techniques to learn from data and make predictions. Here's a summary of the models and what they do.
 
-<h1 href="https://catsanddogsclassifier-argetlam.streamlit.app/" target="_blank">App</h1>
-
-## Project Overview
+## <a href="https://catsanddogsclassifier-argetlam.streamlit.app/" target="_blank">Project Overview </a>
 
 The goal of this project is to compare the performance of four different image classification models. Each model is trained to recognize patterns in images and classify them into specific categories. The models included in this project are:
 
