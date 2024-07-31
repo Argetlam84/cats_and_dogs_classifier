@@ -1,4 +1,4 @@
-[https://github.com/Argetlam84/cats_and_dogs_classifier/issues/1#issue-2440765272](https://github.com/Argetlam84/cats_and_dogs_classifier/blob/main/images/project_image.jpg?raw=true)
+![](images/project_image.jpg)
 
 # Image Classification Models
 
