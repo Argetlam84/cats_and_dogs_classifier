@@ -70,32 +70,63 @@ def predict(image, model, model_name):
             predicted_class = predicted_class.item()
     return predicted_class
 
-st.title("Image Classification")
+# Main page function
+def main():
+    st.title("Welcome to the Image Classification Project")
+    st.write("This project allows you to classify images using pre-trained models.")
+    st.image("project_image.jpg", caption="Image Classification Project", use_column_width=True)
+    st.write("""
+        ## Project Overview
+        This project demonstrates image classification using Keras and PyTorch models.
+        You can upload an image and select a model to classify the image as either a cat or a dog.
+        
+        ## Instructions
+        1. Select the model type and specific model from the sidebar.
+        2. Upload an image.
+        3. Click the 'Predict' button to see the classification result.
+        
+        ## Models
+        - **Keras Models**: MobileNet, NASNet
+        - **PyTorch Models**: MobileNet, SqueezeNet
+    """)
 
-model_type = st.sidebar.selectbox("Select Model Type", ("Keras", "PyTorch"))
+# Prediction page function
+def prediction_page():
+    st.title("Image Classification")
 
-if model_type == "Keras":
-    model_name = st.sidebar.selectbox("Select Keras Model", ("MobileNet", "NASNet"))
-    model = load_keras_model(model_name)
+    model_type = st.sidebar.selectbox("Select Model Type", ("Keras", "PyTorch"))
+
+    if model_type == "Keras":
+        model_name = st.sidebar.selectbox("Select Keras Model", ("MobileNet", "NASNet"))
+        model = load_keras_model(model_name)
+    else:
+        model_name = st.sidebar.selectbox("Select PyTorch Model", ("MobileNet", "SqueezeNet"))
+        model = load_pytorch_model(model_name)
+
+    uploaded_file = st.file_uploader("Choose an image...", type="jpg")
+
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file)
+        st.image(image, caption='Uploaded Image.', use_column_width=True)
+        st.write("")
+        st.write("Classifying...")
+
+        if st.button('Predict'):
+            if model is not None:
+                image = preprocess_image(image, f"{model_type} {model_name}")
+                class_idx = predict(image, model, f"{model_type} {model_name}")
+
+                class_labels = {0: "cat", 1: "dog"}
+                class_name = class_labels[class_idx]
+                st.balloons()
+                st.success(f"Predicted class: {class_name}")
+            else:
+                st.error("Failed to load model. Please check the model files and try again.")
+
+# Sidebar navigation
+page = st.sidebar.selectbox("Select Page", ("Main", "Prediction"))
+
+if page == "Main":
+    main()
 else:
-    model_name = st.sidebar.selectbox("Select PyTorch Model", ("MobileNet", "SqueezeNet"))
-    model = load_pytorch_model(model_name)
-
-uploaded_file = st.file_uploader("Choose an image...", type="jpg")
-
-if uploaded_file is not None:
-    image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image.', use_column_width=True)
-    st.write("")
-    st.write("Classifying...")
-
-    if st.button('Predict'):
-        if model is not None:
-            image = preprocess_image(image, f"{model_type} {model_name}")
-            class_idx = predict(image, model, f"{model_type} {model_name}")
-
-            class_labels = {0: "cat", 1: "dog"}
-            class_name = class_labels[class_idx]
-            st.write(f"Predicted class: {class_name}")
-        else:
-            st.error("Failed to load model. Please check the model files and try again.")
+    prediction_page()
