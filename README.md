@@ -3,7 +3,7 @@
 
 This project showcases four different machine learning models designed to classify images into categories. These models use advanced techniques to learn from data and make predictions. Here's a summary of the models and what they do.
 
-<a href="https://catsanddogsclassifier-argetlam.streamlit.app/" target="_blank"><h1>App</h1></a>
+<h1 href="https://catsanddogsclassifier-argetlam.streamlit.app/" target="_blank">App</h1>
 
 ## Project Overview
 
