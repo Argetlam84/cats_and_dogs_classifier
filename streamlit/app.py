@@ -74,7 +74,7 @@ def predict(image, model, model_name):
 def main():
     st.title("Welcome to the Image Classification Project")
     st.write("This project allows you to classify images using pre-trained models.")
-    st.image("cats_and_dogs_classifier\images\project_image.jpg", caption="Image Classification Project", use_column_width=True)
+    st.image("https://github.com/Argetlam84/Argetlam84/issues/1#issue-2440760916", caption="Image Classification Project", use_column_width=True)
     st.write("""
         ## Project Overview
         This project demonstrates image classification using Keras and PyTorch models.
