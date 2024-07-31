@@ -1,8 +1,8 @@
-numpy==1.19.5
+numpy
 matplotlib
 Pillow
 scikit-learn
-tensorflow==2.4.1
+tensorflow
 torch
 torchvision
 scikit-learn
